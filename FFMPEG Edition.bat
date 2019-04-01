@@ -1,3 +1,5 @@
+:::IMPORTANT
+::::Just plain pasted this from an old project to Github, sorry for the lack of explanation on this...
 echo off
 cls
 title FFMPEG WATCHDOG
@@ -173,7 +175,7 @@ GOTO MoveToTemp
 :startwithselection
 cls
 timeout /t 1 >NUL
-echo           Druecke 1 zum verschieben, 2 zum beenden!
+echo           Press 1 to move , 2 to exit
 @CHOICE /N /C:12
 IF "%ERRORLEVEL%"=="1" GOTO MoveToTemp
 IF "%ERRORLEVEL%"=="2" GOTO Exit
