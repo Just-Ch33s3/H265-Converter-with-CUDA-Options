@@ -273,8 +273,8 @@ echo __________________________________________________________
 echo                        FFMPEG WATCHDOG_h265         
 timeout /t 3 >NUL
 cls
-::for %%a in ("%destX%\*.mp4") do "C:\Program Files\ffmpeg\bin\ffmpeg" -hwaccel cuvid -c:v h264_cuvid -i "%%a" -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M -maxrate:v 8M -c:a aac -b:a 240k  %destY%\%%~na.mkv"
-for %%a in ("%destX%\*.mp4") do "C:\Program Files\ffmpeg\bin\ffmpeg" -hwaccel cuvid -c:v h264_cuvid -i "%%a" -c:v hevc_nvenc -preset veryslow %destY%\%%~na.mkv"
+:::FOR CPU ENCODING::::
+for %%a in ("%destX%\*.mxf") do "C:\Program Files\ffmpeg\bin\ffmpeg" -i "%%a" -c:v libx265 -crf 28 -c:a aac -b:a 320k %destY%\%%~na.mp4"
 goto MoveOriginalFilestoDone
 :::FOR CUDA ENCODING::::
 ::for %%a in ("%destX%\*.mp4") do "C:\Program Files\ffmpeg\bin\ffmpeg" -hwaccel cuvid -c:v h264_cuvid -i "%%a" -c:v hevc_nvenc -preset veryslow %destY%\%%~na.mkv"
