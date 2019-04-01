@@ -3,6 +3,8 @@ cls
 title FFMPEG WATCHDOG
 color 0f
 ::::::::::::::::::::::::SETTINGS::::::::::::::::::::::::
+:: Define FFMPEG Location
+SET FFMPEG="C:\Program Files\ffmpeg\bin\ffmpeg"
 :: Define Watchfolder Path
 SET destQ=C:\Users\chris\Desktop
 :: Define Temporary Folder
@@ -274,10 +276,10 @@ echo                        FFMPEG WATCHDOG_h265
 timeout /t 3 >NUL
 cls
 :::FOR CPU ENCODING::::
-for %%a in ("%destX%\*.mxf") do "C:\Program Files\ffmpeg\bin\ffmpeg" -i "%%a" -c:v libx265 -crf 28 -c:a aac -b:a 320k %destY%\%%~na.mp4"
+for %%a in ("%destX%\*.mxf") do %FFMPEG% -i "%%a" -c:v libx265 -crf 28 -c:a aac -b:a 320k %destY%\%%~na.mp4"
 goto MoveOriginalFilestoDone
 :::FOR CUDA ENCODING::::
-::for %%a in ("%destX%\*.mp4") do "C:\Program Files\ffmpeg\bin\ffmpeg" -hwaccel cuvid -c:v h264_cuvid -i "%%a" -c:v hevc_nvenc -preset veryslow %destY%\%%~na.mkv"
+::for %%a in ("%destX%\*.mp4") do %FFMPEG% -hwaccel cuvid -c:v h264_cuvid -i "%%a" -c:v hevc_nvenc -preset veryslow %destY%\%%~na.mkv"
 
 
 :MoveOriginalFilestoDone
@@ -462,5 +464,4 @@ echo                        FFMPEG WATCHDOG_h265
 timeout /t 2 >NUL
 
 goto start
-
 
